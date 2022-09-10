@@ -1,4 +1,5 @@
-﻿using MohirdevNet.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MohirdevNet.Data;
 using MohirdevNet.Interfaces.Repository;
 using MohirdevNet.Model;
 
@@ -26,7 +27,7 @@ namespace MohirdevNet.Repository
 
         public bool Verify(int id)
         {
-            var record = _context.Users.Single(user => user.UserId == id);
+            var record = _context.Users.Find(id);
             record.Verified = true;
             return Save();
         }

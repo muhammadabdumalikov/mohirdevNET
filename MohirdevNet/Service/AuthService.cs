@@ -43,7 +43,7 @@ namespace MohirdevNet.Service
             {
                 throw new AppException("Incorrect code", HttpStatusCode.BadRequest);
             }
-            return true;
+            return this._authRepo.Verify(user.UserId);
         }
     }
 }
