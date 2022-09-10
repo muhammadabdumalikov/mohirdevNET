@@ -19,5 +19,12 @@ namespace MohirdevNet.Controllers
         {
             return this._authService.Create(request);
         }
+
+        [HttpPost("verify")]
+        public async Task<ActionResult<bool>> Verify(string phone, int code)
+        {
+            var response = this._authService.Verify(phone, code);
+            return Ok(response);    
+        }
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MohirdevNet.Data;
+using MohirdevNet.Exceptions;
 using MohirdevNet.Interfaces.Repository;
 using MohirdevNet.Interfaces.Service;
 using MohirdevNet.Repository;
@@ -32,6 +33,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 
