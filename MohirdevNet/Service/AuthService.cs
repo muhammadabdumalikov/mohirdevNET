@@ -22,13 +22,13 @@ namespace MohirdevNet.Service
             if (isUserExist != null) throw new AppException("User already exist", HttpStatusCode.AlreadyReported);
 
             var user = new User();
-            user.FirstName = request.firstName;
-            user.LastName = request.lastName;
-            user.Phone = request.phone;
-            user.Role = Roles.Basic;
-            user.Password = new PasswordGenerator().Create(request.password);
-            user.VerificationCode = new CodeGeneraor().Generate();
-            user.Verified = false;
+            user.first_name = request.firstName;
+            user.last_name = request.lastName;
+            user.phone = request.phone;
+            user.role = Roles.Basic;
+            user.password = new PasswordGenerator().Create(request.password);
+            user.verification_code = new CodeGeneraor().Generate();
+            user.verified = false;
 
             return this._authRepo.Create(user);
         }
@@ -42,11 +42,11 @@ namespace MohirdevNet.Service
                 throw new AppException("User not found", HttpStatusCode.NotFound);
             }
 
-            if(user.VerificationCode != code)
+            if(user.verification_code != code)
             {
                 throw new AppException("Incorrect code", HttpStatusCode.BadRequest);
             }
-            return this._authRepo.Verify(user.UserId);
+            return this._authRepo.Verify(user.user_id);
         }
     }
 }

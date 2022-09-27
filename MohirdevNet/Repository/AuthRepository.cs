@@ -21,7 +21,7 @@ namespace MohirdevNet.Repository
 
         public User GetOne(string phone)
         {
-            return _context.Users.SingleOrDefault(user => user.Phone == phone);
+            return _context.Users.SingleOrDefault(user => user.phone == phone);
         }
 
         public bool Verify(int id)
@@ -29,7 +29,7 @@ namespace MohirdevNet.Repository
             var record = _context.Users.Find(id);
             Console.WriteLine(record);
 
-            record.Verified = true;
+            record.verified = true;
             return Save();
         }
 
