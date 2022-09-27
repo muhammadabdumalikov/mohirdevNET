@@ -18,6 +18,9 @@ namespace MohirdevNet.Service
         }
         public bool Create(UserDto request)
         {
+            var isUserExist = this._authRepo.GetOne(request.phone);
+            if (isUserExist != null) throw new AppException("User already exist", HttpStatusCode.AlreadyReported);
+
             var user = new User();
             user.FirstName = request.firstName;
             user.LastName = request.lastName;
